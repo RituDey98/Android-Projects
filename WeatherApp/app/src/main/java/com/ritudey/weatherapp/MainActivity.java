@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,9 +19,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +34,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -41,30 +45,41 @@ public class MainActivity extends AppCompatActivity {
    Group mainGroup;
     EditText cityEditText;
    ImageView iconWeather;
-   String iconName;
-
+   String iconName,cityName,myResult="";
 
 
     public void onSearchClick(View v){
 
-       String cityName = cityEditText.getText().toString();
+
+      cityName= cityEditText.getText().toString();
        Log.i("name",cityName);
-        DownloadTask task = new DownloadTask();
-        try {
-            task.execute("https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=899bfe16917fd6d4ebcda376ca3d2b4c");
-        }catch (Exception e)
+
+       //closing the keyboard after taking the input
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(cityEditText.getWindowToken(),0);
+
+        if(cityName.equals(""))
         {
-            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Oops,no input! Please provide an input :)", Toast.LENGTH_SHORT).show();
+        }
+        else{
+
+            DownloadTask task = new DownloadTask();
+            try {
+                Log.i("name",cityName);
+
+                String encodedString = URLEncoder.encode(cityName, "UTF-8"); //encoding special characters  for url
+                task.execute("https://api.openweathermap.org/data/2.5/weather?q="+encodedString+"&appid=899bfe16917fd6d4ebcda376ca3d2b4c");
+
+
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+
         }
 
-        temp.setVisibility(View.VISIBLE);
-        main.setVisibility(View.VISIBLE);
-        descriptionV.setVisibility(View.VISIBLE);
-        humidityV.setVisibility(View.VISIBLE);
-        pressV.setVisibility(View.VISIBLE);
-        windV.setVisibility(View.VISIBLE);
-        city.setVisibility(View.VISIBLE);
-        mainGroup.setVisibility(View.VISIBLE);
 
     }
 
@@ -163,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
             URL url;
             HttpsURLConnection myConnection =null;
-            String result="";
+
 
             try {
                 url = new URL(urls[0]);
@@ -174,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
                 while (data!=-1)
                 {
                     char current  = (char) data;
-                    result+=current;
+                    myResult+=current;
                     data =reader.read();
                 }
 
-                return result;
+                return myResult;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -194,52 +209,77 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            Log.i("weather", result);
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                String weatherInfo = jsonObject.getString("weather");
-                String tempIno = jsonObject.getString("main");
-                String name = jsonObject.getString("name");
-                String sysInfo = jsonObject.getString("sys");
-                String windInfo = jsonObject.getString("wind");
-
-                Log.i("infoRitu", weatherInfo);
-                Log.i("infoRitu", tempIno);
 
 
-                //for temperature
-                JSONObject tempJsonObj = new JSONObject(tempIno);
-                JSONObject sysInfoObj = new JSONObject(sysInfo);
-                JSONObject windInfoObj = new JSONObject(windInfo);
-                double kelvin = Double.parseDouble(tempJsonObj.getString("temp"));
-                double cel = Math.round((kelvin - 273.15) * 100.0) / 100.0;
-                temp.setText(Double.toString(cel));
-                humidityV.setText(tempJsonObj.getString("humidity"));
-                pressV.setText(tempJsonObj.getString("pressure"));
-                city.setText(String.format("%s , %s", name, sysInfoObj.getString("country")));
-                windV.setText(windInfoObj.getString("speed"));
+                if(result!=null){
 
-                //for weather
-                JSONArray arrWeather = new JSONArray(weatherInfo);
-                for (int i = 0; i < arrWeather.length(); i++) {
+                    try {
+                        Log.i("weather", result);
+                        JSONObject jsonObject = new JSONObject(result);
+                        String weatherInfo = jsonObject.getString("weather");
+                        String tempIno = jsonObject.getString("main");
+                        String name = jsonObject.getString("name");
+                        String sysInfo = jsonObject.getString("sys");
+                        String windInfo = jsonObject.getString("wind");
+
+                        Log.i("infoRitu", weatherInfo);
+                        Log.i("infoRitu", tempIno);
+                        Log.i("city",name);
+
+                        //for temperature
+                        JSONObject tempJsonObj = new JSONObject(tempIno);
+                        JSONObject sysInfoObj = new JSONObject(sysInfo);
+                        JSONObject windInfoObj = new JSONObject(windInfo);
+                        double kelvin = Double.parseDouble(tempJsonObj.getString("temp"));
+                        double cel = Math.round((kelvin - 273.15) * 100.0) / 100.0;
+                        temp.setText(Double.toString(cel));
+                        humidityV.setText(tempJsonObj.getString("humidity"));
+                        pressV.setText(tempJsonObj.getString("pressure"));
+                        city.setText(String.format("%s , %s", name, sysInfoObj.getString("country")));
+                        windV.setText(windInfoObj.getString("speed"));
+
+                        //for weather
+                        JSONArray arrWeather = new JSONArray(weatherInfo);
+                        for (int i = 0; i < arrWeather.length(); i++) {
 
 
-                    JSONObject jsonObjectPart = arrWeather.getJSONObject(i);
+                            JSONObject jsonObjectPart = arrWeather.getJSONObject(i);
 
-                    main.setText(jsonObjectPart.getString("main"));
-                    descriptionV.setText(jsonObjectPart.getString("description"));
-                    iconName = jsonObjectPart.getString("icon");
-                    Log.i("icon", iconName);
+                            main.setText(jsonObjectPart.getString("main"));
+                            descriptionV.setText(jsonObjectPart.getString("description"));
+                            iconName = jsonObjectPart.getString("icon");
+                            Log.i("icon", iconName);
+
+                        }
+                        changeIcon(iconName);
+
+                        myResult="";
+
+                        temp.setVisibility(View.VISIBLE);
+                        main.setVisibility(View.VISIBLE);
+                        descriptionV.setVisibility(View.VISIBLE);
+                        humidityV.setVisibility(View.VISIBLE);
+                        pressV.setVisibility(View.VISIBLE);
+                        windV.setVisibility(View.VISIBLE);
+                        city.setVisibility(View.VISIBLE);
+                        mainGroup.setVisibility(View.VISIBLE);
+
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), "Couldn't find the weather for this location  :(", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
 
                 }
-                changeIcon(iconName);
+                else {
+                    Toast.makeText(getApplicationContext(), "Couldn't find the weather for this location  :(", Toast.LENGTH_SHORT).show();
+                }
 
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
         }
+
+
+
+
     }
 
 }
