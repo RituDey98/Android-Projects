@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     timerResume();
                     playBtn.setVisibility(View.GONE);
                     pauseBtn.setVisibility(View.VISIBLE);
-                    
+
                 }
                 break;
 

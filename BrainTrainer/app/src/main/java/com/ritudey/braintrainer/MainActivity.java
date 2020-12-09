@@ -17,8 +17,7 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    TextView timer,equation,score,option1,option2,option3,option4,result;
-    LinearLayout play;
+    TextView timer,equation,score,option1,option2,option3,option4,result,play;
     ConstraintLayout game;
     ArrayList<Integer> answers = new ArrayList<Integer>();
     Random rand;
@@ -182,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        myTimer = new CountDownTimer(3100,1000){
+        myTimer = new CountDownTimer(36000,1000){
 
             @Override
             public void onTick(long millisUntilFinished) {
