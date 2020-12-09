@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -18,10 +19,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     SeekBar seekTime;
     TextView time;
-    Button startStopBtn;
+    ImageView playBtn,pauseBtn;
     CountDownTimer myTimer;
     int cuurTime;
     long milliSecondsLeft;
+    boolean firstPlay = false;
 
     public void updateTime(long secLeft){
        long  min= (long)secLeft/(60);
@@ -49,8 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(),R.raw.air_horn);
                 mPlayer.start();
-                startStopBtn.setText("go");
+                playBtn.setVisibility(View.VISIBLE);
+                pauseBtn.setVisibility(View.GONE);
                 seekTime.setEnabled(true);
+                firstPlay=true;
             }
         }.start();
     }
@@ -73,39 +77,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //Timer using handler
-//        final Handler handler = new Handler();
-//
-//        Runnable run = new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.i("Running code","every second");
-//                handler.postDelayed(this,1000);
-//            }
-//        };
-//        handler.post(run);  //This will run the code immediately
+
+        /* final Handler handler = new Handler();
+
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                Log.i("Running code","every second");
+                handler.postDelayed(this,1000);
+            }
+        };
+        handler.post(run);  //This will run the code immediately
 
 
+        new CountDownTimer(10000,1000){
 
-//        new CountDownTimer(10000,1000){
-//
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//
-//                Log.i("CountDown",String.valueOf(millisUntilFinished/1000));
-//                 //running the code every tick o interval here  1sec
-//
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//
-//                Log.i("Finished","countdown");
-        //running at 10 sec aftr finish
-//            }
-//        }.start();
+            @Override
+            public void onTick(long millisUntilFinished) {
 
+                Log.i("CountDown",String.valueOf(millisUntilFinished/1000));
+                 //running the code every tick o interval here  1sec
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                Log.i("Finished","countdown");
+        running at 10 sec aftr finish
+            }
+        }.start();
+        */
+
+        firstPlay=true;
         time = findViewById(R.id.timeTextV);
-        startStopBtn =findViewById(R.id.startStopBtn);
+        playBtn =findViewById(R.id.playBtn);
+        pauseBtn=findViewById(R.id.pauseBtn);
 
         seekTime = findViewById(R.id.timeSeek);
         seekTime.setMax(600);
@@ -130,26 +137,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        startStopBtn.setOnClickListener(this);
+        playBtn.setOnClickListener(this);
+        pauseBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        if(startStopBtn.getText().equals("go"))
+        switch (v.getId())
         {
-            timerStart(cuurTime*1000);
-            startStopBtn.setText("pause");
-            seekTime.setEnabled(false);
-        }
-        else if(startStopBtn.getText().equals("pause"))
-        {
-            timerStop();
-            startStopBtn.setText("Resume");
-        }
-        else{
-            timerResume();
-            startStopBtn.setText("pause");
+            case R.id.playBtn:
+                if(firstPlay)
+                {
+                    timerStart(cuurTime*1000);
+                    playBtn.setVisibility(View.GONE);
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    seekTime.setEnabled(false);
+                    firstPlay=false;
+                }else{
+
+                    timerResume();
+                    playBtn.setVisibility(View.GONE);
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    
+                }
+                break;
+
+
+            case R.id.pauseBtn:
+                timerStop();
+                playBtn.setVisibility(View.VISIBLE);
+                pauseBtn.setVisibility(View.GONE);
+
         }
 
     }
