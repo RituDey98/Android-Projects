@@ -14,9 +14,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     // 2 is when none is selected
-    int gameState [] = {2,2,2,2,2,2,2,2,2};
+    int[] gameState = {2,2,2,2,2,2,2,2,2};
 
-    //the index at which the game could b won
+    //the indices at which the game could be won
     int [][] winningPositions = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
 
     boolean gameActive = true;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     {
         ImageView counter = (ImageView) v;
 
-        // red is 0 and yellow is 1
+        // f=0 for red and f=1 for yellow
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
 
         if(gameState[tappedCounter] == 2 && gameActive)
