@@ -3,25 +3,27 @@ package com.ritudey.connect3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     // 2 is when none is selected
     int[] gameState = {2,2,2,2,2,2,2,2,2};
 
-    //the indices at which the game could be won
+    //the indices at which the game could be won if the game states of the winning position are equal
     int [][] winningPositions = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
 
     boolean gameActive = true;
 
-    int f=0;
+    int counterColor=0; //0 is red, 1 is yellow
+
+
+
     public void onClickDropIn(View v)
     {
         ImageView counter = (ImageView) v;
@@ -29,35 +31,33 @@ public class MainActivity extends AppCompatActivity {
         // f=0 for red and f=1 for yellow
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
 
-        if(gameState[tappedCounter] == 2 && gameActive)
+        if(gameState[tappedCounter] == 2 && gameActive) // if game is active and the tappedCounter is not selected already i.e tappedCounter==2
         {
-            counter.setTranslationY(-1000f);
-            gameState[tappedCounter] = f;
+            gameState[tappedCounter] = counterColor;    //setting the game state to the colour of selected counter
 
-            if(f==0)
+            if(counterColor==0)
             {
                 counter.setImageResource(R.drawable.red_coin);
-
-                f=1;
+                counterColor=1;  //next counter would b yellow
             }
             else
             {
                 counter.setImageResource(R.drawable.yellow_coin);
-                f=0;
+                counterColor=0; //next counter would be red
             }
 
-            counter.animate().translationYBy(1000f).setDuration(500);
-
-            for(int [] winningPosition : winningPositions)
+            for(int [] myWinningPosition : winningPositions) // going through all the 8 sets of winning positions
             {
-                if((gameState[winningPosition[0]]==gameState[winningPosition[1]] )             // checking if the winning positions are same
-                        && (gameState[winningPosition[1]]==gameState[winningPosition[2]])
-                        &&(gameState[winningPosition[0]]!=2))
+
+                // checking if the winning positions have same colour of counter,i.e the game states are equal at the winning positions
+                if((gameState[myWinningPosition[0]]==gameState[myWinningPosition[1]] )
+                        && (gameState[myWinningPosition[1]]==gameState[myWinningPosition[2]])
+                        &&(gameState[myWinningPosition[0]]!=2))
                 {
                     gameActive=false;
-                    System.out.println("win"+gameState[winningPosition[0]]); // testing is getting 0 or 1 at 0th index
+                    System.out.println("win:"+gameState[myWinningPosition[0]]); // testing if getting 0 or 1 at 0th index
 
-                    if(gameState[winningPosition[0]]==0)
+                    if(gameState[myWinningPosition[0]]==0)
                     {
                         winMsg("Red Wins!!");
                     }
@@ -87,14 +87,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+
     public void playAgain(View v)
     {
+        Log.i("clicked","play again");
         LinearLayout playAgain = findViewById(R.id.playAgainLayout);
-        playAgain.clearAnimation();
-        playAgain.setVisibility(View.INVISIBLE);
+        playAgain.setVisibility(View.GONE);
 
          gameActive = true;
-         f=0;
+         counterColor=0;
         for (int i=0;i<gameState.length;i++)
         {
             gameState[i]=2;
@@ -106,16 +109,22 @@ public class MainActivity extends AppCompatActivity {
             ((ImageView) layout.getChildAt(i)).setImageResource(0);
         }
     }
+
+
+
+
+
     public void winMsg(String msg)
     {
 
         LinearLayout playAgain = findViewById(R.id.playAgainLayout) ;
-        playAgain.animate().rotation(720).setDuration(2000); // the animation is running only first time
         playAgain.setVisibility(View.VISIBLE);
 
         TextView winMsg = findViewById(R.id.winTextView);
         winMsg.setText(msg);
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
