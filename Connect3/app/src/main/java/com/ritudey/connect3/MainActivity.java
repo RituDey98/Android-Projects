@@ -1,7 +1,9 @@
 package com.ritudey.connect3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(gameState[tappedCounter] == 2 && gameActive) // if game is active and the tappedCounter is not selected already i.e tappedCounter==2
         {
-            gameState[tappedCounter] = counterColor;    //setting the game state to the colour of selected counter
+            Log.i("clicked","gameactive true");
+            counter.setTranslationY(-1000f);
+            gameState[tappedCounter] = counterColor;      //setting the game state to the colour of selected counter
 
             if(counterColor==0)
             {
@@ -45,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 counter.setImageResource(R.drawable.yellow_coin);
                 counterColor=0; //next counter would be red
             }
+            counter.animate().translationYBy(1000f).setDuration(500);
 
             for(int [] myWinningPosition : winningPositions) // going through all the 8 sets of winning positions
             {
@@ -130,5 +136,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        Log.i("check", String.valueOf(newConfig.orientation));
+        super.onConfigurationChanged(newConfig);
+
+        Log.i("check", String.valueOf(newConfig.orientation));
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Log.i("check", String.valueOf(newConfig.orientation));
+            Toast.makeText(getApplicationContext(),"Landscape mode not permitted!! :)",Toast.LENGTH_SHORT).show();
+        }else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Log.i("check", String.valueOf(newConfig.orientation));
+            Toast.makeText(getApplicationContext(),"Landscape mode not permitted!! :)",Toast.LENGTH_SHORT).show();
+        }
+            
     }
 }
