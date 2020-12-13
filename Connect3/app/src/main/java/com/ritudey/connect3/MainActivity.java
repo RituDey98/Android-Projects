@@ -145,12 +145,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("check", String.valueOf(newConfig.orientation));
         if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            Log.i("check", String.valueOf(newConfig.orientation));
+            //Log.i("check", String.valueOf(newConfig.orientation));
             Toast.makeText(getApplicationContext(),"Landscape mode not permitted!! :)",Toast.LENGTH_SHORT).show();
         }else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Log.i("check", String.valueOf(newConfig.orientation));
+            //Log.i("check", String.valueOf(newConfig.orientation));
             Toast.makeText(getApplicationContext(),"Landscape mode not permitted!! :)",Toast.LENGTH_SHORT).show();
         }
             
     }
+
 }
