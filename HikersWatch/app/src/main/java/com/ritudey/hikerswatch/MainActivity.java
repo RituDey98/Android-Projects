@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 updateLocation(location);
 
+                //getting user address
                 Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                 try {
 
@@ -91,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-
-
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
