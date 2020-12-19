@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,36 +20,33 @@ public class MainActivity extends AppCompatActivity {
     TextView addPlaces;
     Intent intent;
     ListView myListView;
-    ArrayList<String> myFavPlaces;
+    static ArrayList<String> myFavPlaces= new ArrayList<>();
+    static ArrayList<LatLng> myPlaceLatLng =new ArrayList<>();
+    static ArrayAdapter arrayAdapter;
 
 
-    public  void OnClickAddPlaces(View v)
-    {
-        intent = new Intent(getApplicationContext(),MapsActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addPlaces = findViewById(R.id.addTv);
         myListView=findViewById(R.id.listView);
 
-        myFavPlaces = new ArrayList<String>();
-        myFavPlaces.add("Rik");
-        myFavPlaces.add("Ritu");
-        myFavPlaces.add("Rik");
-        myFavPlaces.add("Ritu");
+        myFavPlaces.add("+ Add a new place");
+        myPlaceLatLng.add(new LatLng(0,0));
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,myFavPlaces);
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,myFavPlaces);
         myListView.setAdapter(arrayAdapter);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //take to the next activity here
+
+                intent = new Intent(getApplicationContext(),MapsActivity.class);
+                intent.putExtra("favPlaceNumber",position);
+                startActivity(intent);
             }
         });
 
