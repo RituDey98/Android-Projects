@@ -9,6 +9,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.icu.text.SimpleDateFormat;
 import android.location.Address;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -208,6 +210,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MainActivity.myFavPlaces.add(address);
         MainActivity.myPlaceLatLng.add(latLng);
         MainActivity.arrayAdapter.notifyDataSetChanged();
+
+        //storing the data permanently using sharedPreferences
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.ritudey.memorableplaces",MODE_PRIVATE); //private,for this app only
+
+        try {
+            ArrayList<String> latitudes = new ArrayList<>();
+            ArrayList<String> longitudes = new ArrayList<>();
+
+            for(LatLng coordinates : MainActivity.myPlaceLatLng){
+
+                latitudes.add(String.valueOf(coordinates.latitude));
+                longitudes.add(String.valueOf(coordinates.latitude));
+            }
+
+            sharedPreferences.edit().putString("myFavPlaces",ObjectSerializer.serialize(MainActivity.myFavPlaces)).apply();
+            sharedPreferences.edit().putString("latitudes",ObjectSerializer.serialize(latitudes)).apply();
+            sharedPreferences.edit().putString("longitudes",ObjectSerializer.serialize(longitudes)).apply();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
         Toast.makeText(this, "Location saved!!", Toast.LENGTH_SHORT).show();
 
