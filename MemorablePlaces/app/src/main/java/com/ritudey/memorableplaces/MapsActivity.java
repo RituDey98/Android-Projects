@@ -92,7 +92,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -140,9 +139,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-
-
     }
+
+
 
     @Override
     public void onMapLongClick(LatLng latLng) {
@@ -198,7 +197,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(address.equals("")){
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-              SimpleDateFormat mySdf = new SimpleDateFormat("HH:mm  dd-MM-yyyy");
+              @SuppressLint("SimpleDateFormat") SimpleDateFormat mySdf = new SimpleDateFormat("HH:mm  dd-MM-yyyy");
              address+=mySdf.format(new Date());
             }
 
@@ -211,7 +210,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MainActivity.arrayAdapter.notifyDataSetChanged();
 
         Toast.makeText(this, "Location saved!!", Toast.LENGTH_SHORT).show();
-
 
     }
 
