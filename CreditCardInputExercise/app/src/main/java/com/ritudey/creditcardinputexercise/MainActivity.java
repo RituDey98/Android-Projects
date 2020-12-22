@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         lName = String.valueOf(lNameTL.getEditText().getText());
 
 
+        if(cardNum!=null || expiryDate!=null || cvv!=null || fName!=null || lName!=null) {
+
 
             Log.i(TAG, cardNum);
             Log.i(TAG, expiryDate);
@@ -88,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+
+
             //checking validity of the expiry date
             if (!validityCheckExpiryDate(expiryDate)) {
                 Log.i("validityCheckExp", "invalid");
@@ -97,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("validityCheckExp", "valid");
                 resetError(expDateTL);
             }
+
+
 
 
             //checking validity for name
@@ -135,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+
+
             // showing alert dialog box
             if (validityCardNum && validityCheckCvv(cvv) && validityCheckExpiryDate(expiryDate) && validityFName && validityLName) {
                 new AlertDialog.Builder(this)
@@ -146,12 +154,13 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }).setIcon(android.R.drawable.ic_dialog_info)
                         .show();
-            }else{
-
-                Toast.makeText(this, "Please provide valid inputs", Toast.LENGTH_SHORT).show();
             }
 
+        }else{
 
+            Toast.makeText(this, "Please provide a valid input", Toast.LENGTH_SHORT).show();
+
+        }
 
 }
 
