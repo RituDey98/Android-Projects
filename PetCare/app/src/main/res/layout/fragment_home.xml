@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.HomeFragment">
+    <LinearLayout
+        android:id="@+id/home_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/slider_height"
+            app:iss_auto_cycle="true"
+            app:iss_period="1000"
+            app:iss_delay="0"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/category_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/amethysta"
+                    android:text="Category"
+                    android:textSize="@dimen/text_sub_heading"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue"/>
+
+                <TextView
+                    android:id="@+id/see_all_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/amethysta"
+                    android:gravity="end"
+                    android:text="See all"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_200"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_view_category"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/recy_view_height"
+                android:layout_marginHorizontal="@dimen/extra_small"
+                android:layout_marginTop="@dimen/small" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/new_products_CV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/elev_med"
+            app:cardCornerRadius="@dimen/extra_small"
+            android:layout_margin="@dimen/extra_small"
+            android:backgroundTint="@color/backgroundColor"
+            android:padding="@dimen/extra_small">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/new_products_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/amethysta"
+                        android:text="New Products"
+                        android:textSize="@dimen/text_sub_heading"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"/>
+                    <TextView
+                        android:id="@+id/new_products_sub_head_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/amethysta"
+                        android:text="New Products"
+                        android:layout_below="@+id/new_products_TV"
+                        android:textColor="@color/blue"/>
+
+                    <TextView
+                        android:id="@+id/new_pro_see_all_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amethysta"
+                        android:text="See all"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/purple_200"/>
+                </RelativeLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_view_new_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/extra_small"
+                    android:layout_marginTop="@dimen/small" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/popular_pro_CV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/elev_med"
+            app:cardCornerRadius="@dimen/extra_small"
+            android:layout_margin="@dimen/extra_small"
+            android:backgroundTint="@color/backgroundColor"
+            android:padding="@dimen/extra_small">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/popular_pro_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/amethysta"
+                        android:text="Popular Products"
+                        android:textSize="@dimen/text_sub_heading"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"/>
+                    <TextView
+                        android:id="@+id/popular_products_sub_head_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/amethysta"
+                        android:text="New Products"
+                        android:layout_below="@+id/popular_pro_TV"
+                        android:textColor="@color/blue"/>
+
+                    <TextView
+                        android:id="@+id/popular_pro_see_all_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amethysta"
+                        android:layout_alignParentEnd="true"
+                        android:text="See all"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/purple_200"/>
+                </RelativeLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_view_pop_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/extra_small"
+                    android:layout_marginTop="@dimen/small" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>

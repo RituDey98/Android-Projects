@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "416836957429",
+    "project_id": "custom-bearing-298516",
+    "storage_bucket": "custom-bearing-298516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416836957429:android:99c3724ff58ced8389c1bc",
+        "android_client_info": {
+          "package_name": "com.ritudey.petcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416836957429-7mgrk7hdrb4irsifl5sogd9c7st13kap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5iA0KCLVQpmRH8l_VU8SoTtAluCTyf_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416836957429-7mgrk7hdrb4irsifl5sogd9c7st13kap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

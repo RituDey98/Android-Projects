@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="extra_small">5dp</dimen>
+    <dimen name="small">10dp</dimen>
+    <dimen name="medium">15dp</dimen>
+    <dimen name="large">20dp</dimen>
+    <dimen name="extra_large">25dp</dimen>
+
+  <dimen name="text_small">15sp</dimen>
+  <dimen name="text_medium">18sp</dimen>
+  <dimen name="text_large">26sp</dimen>
+  <dimen name="text_extra_large">36sp</dimen>
+
+  <dimen name="elev_small">3dp</dimen>
+  <dimen name="elev_med">5dp</dimen>
+  <dimen name="elev_large">8dp</dimen>
+
+  <dimen name="text_heading">40sp</dimen>
+
+  <dimen name="text_sub_heading">20sp</dimen>
+
+  <dimen name="margin_heading">30dp</dimen>
+
+  <dimen name="slider_height">220dp</dimen>
+
+  <dimen name="recy_view_height">90dp</dimen>
+
+
+</resources>
