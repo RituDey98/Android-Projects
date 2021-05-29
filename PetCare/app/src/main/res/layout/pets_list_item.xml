@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/pets_list_item_CV"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/item_card_width"
+    android:layout_height="@dimen/item_card_height"
+    android:layout_margin="@dimen/extra_small"
+    app:cardCornerRadius="@dimen/extra_small"
+    android:background="@color/backgroundColor">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/pet_img"
+            android:layout_width="@dimen/item_img_width"
+            android:layout_height="@dimen/item_img_height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/pet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_text_height"
+            android:fontFamily="@font/amethysta"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Pet Name"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

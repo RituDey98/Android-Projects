@@ -17,6 +17,20 @@
             app:iss_auto_cycle="true"
             app:iss_period="1000"
             app:iss_delay="0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amethysta"
+            android:text="Shop by Pets"
+            android:textSize="@dimen/text_sub_heading"
+            android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_view_pet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recy_view_height"
+            android:layout_marginHorizontal="@dimen/extra_small"
+            android:layout_marginTop="@dimen/small" />
+
 
 
             <LinearLayout
@@ -31,10 +45,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/amethysta"
-                    android:text="Category"
+                    android:text="Shop by Category"
                     android:textSize="@dimen/text_sub_heading"
-                    android:textStyle="bold"
-                    android:textColor="@color/blue"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/see_all_TV"
@@ -65,6 +78,7 @@
             android:layout_margin="@dimen/extra_small"
             android:backgroundTint="@color/backgroundColor"
             android:padding="@dimen/extra_small">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,18 +93,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/amethysta"
-                        android:text="New Products"
+                        android:text="Featured Products"
                         android:textSize="@dimen/text_sub_heading"
-                        android:textStyle="bold"
-                        android:textColor="@color/blue"/>
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/new_products_sub_head_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/amethysta"
                         android:text="New Products"
-                        android:layout_below="@+id/new_products_TV"
-                        android:textColor="@color/blue"/>
+                        android:layout_below="@+id/new_products_TV" />
 
                     <TextView
                         android:id="@+id/new_pro_see_all_TV"
@@ -140,16 +152,14 @@
                         android:fontFamily="@font/amethysta"
                         android:text="Popular Products"
                         android:textSize="@dimen/text_sub_heading"
-                        android:textStyle="bold"
-                        android:textColor="@color/blue"/>
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/popular_products_sub_head_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/amethysta"
                         android:text="New Products"
-                        android:layout_below="@+id/popular_pro_TV"
-                        android:textColor="@color/blue"/>
+                        android:layout_below="@+id/popular_pro_TV" />
 
                     <TextView
                         android:id="@+id/popular_pro_see_all_TV"
