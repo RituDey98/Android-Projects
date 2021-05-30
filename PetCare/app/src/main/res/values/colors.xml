@@ -13,4 +13,6 @@
     <color name="light_blue">#4EA1F3</color>
     <color name="backgroundColor">#FFFCFC</color>
     <color name="textHeading">#008eff</color>
+    <color name="layoutBackgroundColor">#F6F6F6</color>
+
 </resources>
