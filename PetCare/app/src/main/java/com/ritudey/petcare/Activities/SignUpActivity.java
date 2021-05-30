@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +42,11 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onClickSignUp(View view) {
+
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(),0);
+
+
         String userName = (name.getText()).toString();
         String userEmail = (email.getText()).toString();
         String userPwd = (pwd.getText()).toString();

@@ -9,8 +9,7 @@
         android:id="@+id/home_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-      >
+        android:orientation="vertical">
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
@@ -64,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2"
-                android:layout_marginHorizontal="@dimen/extra_small">
+                android:layout_marginHorizontal="@dimen/extra_small"
+                android:layout_marginTop="@dimen/small">
 
                 <TextView
                     android:id="@+id/category_TV"
@@ -98,15 +98,7 @@
                 />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/new_products_CV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/elev_med"
-            app:cardCornerRadius="@dimen/extra_small"
-            android:layout_margin="@dimen/extra_small"
-            android:backgroundTint="@color/backgroundColor"
-            android:padding="@dimen/small">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,14 +107,16 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small"
+                    android:paddingHorizontal="@dimen/extra_small">
 
                     <TextView
                         android:id="@+id/new_products_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/amethysta"
-                        android:text="Featured Products"
+                        android:text="New Products"
                         android:textSize="@dimen/text_sub_heading"
                         android:textStyle="bold" />
                     <TextView
@@ -130,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/amethysta"
-                        android:text="New Products"
+                        android:text="Take a look at the newly added items"
                         android:layout_below="@+id/new_products_TV" />
 
                     <TextView
@@ -150,28 +144,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/extra_small"
-                    android:layout_marginTop="@dimen/small" />
+                    android:layout_marginTop="@dimen/small"
+                    android:background="@color/layoutBackgroundColor"/>
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/popular_pro_CV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/elev_med"
-            app:cardCornerRadius="@dimen/extra_small"
-            android:layout_margin="@dimen/extra_small"
-            android:backgroundTint="@color/backgroundColor"
-            android:padding="@dimen/small">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small"
+                    android:paddingHorizontal="@dimen/extra_small">
 
                     <TextView
                         android:id="@+id/popular_pro_TV"
@@ -187,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/amethysta"
-                        android:text="New Products"
+                        android:text="The highest rated products"
                         android:layout_below="@+id/popular_pro_TV" />
 
                     <TextView
@@ -208,10 +191,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="@dimen/extra_small"
-                    android:layout_marginTop="@dimen/small" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+                    android:layout_marginTop="@dimen/small"
+                    android:background="@color/layoutBackgroundColor"/>
 
 
     </LinearLayout>

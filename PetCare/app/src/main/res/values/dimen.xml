@@ -6,6 +6,7 @@
     <dimen name="large">20dp</dimen>
     <dimen name="extra_large">25dp</dimen>
 
+  <dimen name="text_extra_small">13sp</dimen>
   <dimen name="text_small">15sp</dimen>
   <dimen name="text_medium">18sp</dimen>
   <dimen name="text_large">26sp</dimen>
@@ -32,6 +33,9 @@
 
   <dimen name="item_card_width">70dp</dimen>
   <dimen name="item_card_height">90dp</dimen>
+
+  <dimen name="product_item_card_width">140dp</dimen>
+  <dimen name="product__item_img_dimen">100dp</dimen>
 
 
 </resources>
