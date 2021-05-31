@@ -1,6 +1,8 @@
 package com.ritudey.petcare.Models;
 
-public class PopularProModel {
+import java.io.Serializable;
+
+public class PopularProModel implements Serializable {
 
     int amount;
     String description;

@@ -1,6 +1,7 @@
 package com.ritudey.petcare.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ritudey.petcare.Activities.DetailActivity;
 import com.ritudey.petcare.Models.PopularProModel;
 import com.ritudey.petcare.R;
 
@@ -39,6 +41,15 @@ public class PopularProRecyclerViewAdapter extends RecyclerView.Adapter<PopularP
         Glide.with(context).load(myList.get(position).getImg_url()).into(holder.popularProImg);
         holder.popularProName.setText(myList.get(position).getName());
         holder.popularProAmount.setText(String.valueOf(myList.get(position).getAmount()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("detail",myList.get(position));
+                context.startActivity(intent);
+            }
+        });
 
     }
 

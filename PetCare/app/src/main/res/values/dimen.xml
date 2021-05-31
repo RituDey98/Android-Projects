@@ -35,7 +35,9 @@
   <dimen name="item_card_height">90dp</dimen>
 
   <dimen name="product_item_card_width">140dp</dimen>
-  <dimen name="product__item_img_dimen">100dp</dimen>
+  <dimen name="product_item_img_dimen">100dp</dimen>
+
+  <dimen name="pro_detail_cover_height">300dp</dimen>
 
 
 </resources>

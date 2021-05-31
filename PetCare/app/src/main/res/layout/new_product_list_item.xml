@@ -15,8 +15,8 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/new_pro_img"
-            android:layout_width="@dimen/product__item_img_dimen"
-            android:layout_height="@dimen/product__item_img_dimen"
+            android:layout_width="@dimen/product_item_img_dimen"
+            android:layout_height="@dimen/product_item_img_dimen"
             android:scaleType="centerCrop"
             android:src="@drawable/milk"
             app:layout_constraintStart_toStartOf="parent"
